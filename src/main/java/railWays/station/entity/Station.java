@@ -14,10 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Station extends BaseEntity<UUID> {
-    private String stationLocation;
+    private Location stationLocation;
     private String name;
 
-    public Station(UUID uuid, LocalDateTime modified, LocalDateTime created, String stationLocation, String name) {
+    public Station(UUID uuid, LocalDateTime modified, LocalDateTime created, Location stationLocation, String name) {
         super(uuid, modified, created);
         this.stationLocation = stationLocation;
         this.name = name;

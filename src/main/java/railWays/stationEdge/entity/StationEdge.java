@@ -16,7 +16,7 @@ import java.util.UUID;
 public class StationEdge extends BaseEntity<UUID> {
     private UUID leftStation;
     private UUID rightStation;
-    private int distance;
+    private double distance;
 
     public StationEdge(UUID uuid, LocalDateTime modified, LocalDateTime created, UUID leftStation, UUID rightStation, int distance) {
         super(uuid, modified, created);

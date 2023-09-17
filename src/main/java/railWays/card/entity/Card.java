@@ -1,9 +1,6 @@
 package railWays.card.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import railWays.common.entity.BaseEntity;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,7 @@ public class Card extends BaseEntity<UUID> {
     private int password;
     private String endDate;
 
+    @Builder
     public Card(UUID uuid, LocalDateTime modified, LocalDateTime created, String cardNumber, int password, String endDate) {
         super(uuid, modified, created);
         this.cardNumber = cardNumber;
