@@ -13,8 +13,14 @@ import java.util.UUID;
 public class CardService implements Service<Card, UUID> {
     private static final CardService cardService = new CardService();
     private final CardRepository cardRepository = CardRepository.getInstance();
+
     @Override
     public Card findById(UUID uuid) {
+        Card byId = cardRepository.findById(uuid);
+        if (byId != null) {
+            return byId;
+        }
+        System.out.println("Card didn't find!");
         return null;
     }
 
@@ -33,7 +39,7 @@ public class CardService implements Service<Card, UUID> {
         return null;
     }
 
-    public static CardService getInstance(){
+    public static CardService getInstance() {
         return cardService;
     }
 }
