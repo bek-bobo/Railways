@@ -10,7 +10,7 @@ import java.util.Map;
 
 public abstract class BaseRepository<ID, ENTITY extends BaseEntity<ID>> implements Repository<ID, ENTITY> {
 
-    protected final Map<ID, ENTITY> entities = new HashMap<>();
+    protected Map<ID, ENTITY> entities = new HashMap<>();
     @Override
     public ENTITY findById(ID id) {
         return entities.get(id);

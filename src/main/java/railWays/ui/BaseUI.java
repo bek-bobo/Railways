@@ -78,19 +78,19 @@ public class BaseUI {
                 .build();
         userBuild = userService.add(userBuild);
         if (userBuild == null){
-            System.out.println("This phone number has been already used !!! ");
+            System.out.println("This username has been already used !!! ");
         }else {
             System.out.println("You have register successfully !!! ");
         }
     }
     public void signIn(){
-        System.out.print("Please enter your phoneNumber: ");
-        String phoneNumber = Main.scannerStr.nextLine();
+        System.out.print("Please enter your username: ");
+        String userName = Main.scannerStr.nextLine();
         System.out.print("Please enter your password: ");
         String password = Main.scannerStr.nextLine();
-        User user = userService.signIn(phoneNumber, password);
+        User user = userService.signIn(userName, password);
         if (user == null){
-            System.out.println("Phone number of password is wrong !!! ");
+            System.out.println("Current user doesn't exist! Please try again!");
         }else {
             switch (user.getUserType()){
                 case USER -> new UserUI().start(user);

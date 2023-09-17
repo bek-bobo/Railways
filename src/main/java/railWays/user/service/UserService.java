@@ -33,18 +33,18 @@ public class UserService implements Service<User, UUID> {
     public User add(User user) {
         List<User> users = getAll();
         for (User existingUser : users) {
-            if (existingUser.getPhoneNumber().equals(user.getPhoneNumber())) {
+            if (existingUser.getUsername().equals(user.getUsername())) {
                 return null;
             }
         }
         return userRepository.add(user);
     }
 
-    public User signIn(String phoneNumber, String password) {
-        User byPhoneNumber = userRepository.findByPhoneNumber(phoneNumber);
-        if (byPhoneNumber != null) {
-            if (byPhoneNumber.getPassword().equals(password)) {
-                return byPhoneNumber;
+    public User signIn(String userName, String password) {
+        User byUserName = userRepository.findByUserName(userName);
+        if (byUserName != null) {
+            if (byUserName.getPassword().equals(password)) {
+                return byUserName;
             }
         }
         return null;
