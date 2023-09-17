@@ -17,7 +17,6 @@ public class Card extends BaseEntity<UUID> {
     private double balance;
 
     @Builder
-
     public Card(UUID uuid, LocalDateTime modified, LocalDateTime created, String cardNumber, int password, String endDate, double balance) {
         super(uuid, modified, created);
         this.cardNumber = cardNumber;

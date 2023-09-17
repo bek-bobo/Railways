@@ -3,29 +3,25 @@ package railWays.ui;
 import railWays.Main;
 import railWays.user.entity.User;
 import railWays.user.entity.UserType;
-import railWays.user.repository.UserRepository;
 import railWays.user.service.UserService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class BaseUI {
     private static final UserService userService = UserService.getInstance();
-    private static final UserRepository userRepository = UserRepository.getInstance();
-    private static final HashMap<UUID, User> users = userRepository.users;
 
-    {
+
+    static {
         User build = User.builder()
                 .uuid(UUID.randomUUID())
-                .firstName("Abbi")
-                .lastName("A")
+                .firstName("1")
+                .lastName("1")
                 .age(19)
                 .phoneNumber("+998972227999")
                 .passportId("AA12345")
-                .username("qod1r_c1k")
-                .password("1234")
+                .username("1")
+                .password("1")
                 .userType(UserType.ADMIN)
                 .cardsId(new ArrayList<>())
                 .ticketsId(new ArrayList<>())
@@ -94,7 +90,7 @@ public class BaseUI {
         }else {
             switch (user.getUserType()){
                 case USER -> new UserUI().start(user);
-                case ADMIN -> new AdminUI().start();
+                case ADMIN -> new AdminUI().start(user);
                 case DRIVER -> new DriverUI().start(user);
             }
         }

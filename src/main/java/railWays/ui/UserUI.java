@@ -56,7 +56,7 @@ public class UserUI {
     private void myAccount(User user) {
         boolean isExited = true;
         while (isExited) {
-            System.out.println("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n"
+            System.out.printf("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n\n"
                     .formatted(user.getFirstName(), user.getUserType().toString(), user.getLastName(),
                             user.getUsername(), user.getPhoneNumber(), user.getAge()));
             System.out.println("---------------------------------------------------------------------");
@@ -85,7 +85,7 @@ public class UserUI {
     private void changePersonalInfo(User user) {
         boolean isExited = true;
         while (isExited) {
-            System.out.println("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n"
+            System.out.printf("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n\n"
                     .formatted(user.getFirstName(), user.getUserType().toString(), user.getLastName(),
                             user.getUsername(), user.getPhoneNumber(), user.getAge()));
             System.out.println("---------------------------------------------------------------------");
@@ -113,11 +113,26 @@ public class UserUI {
         }
     }
 
+    private void changePassword(User user) {
+    }
+
+    private void changeUserName(User user) {
+
+    }
+
+    private void changePhoneNumber(User user) {
+
+    }
+
+    private void changeSurname(User user) {
+
+    }
+
     private void changeName(User user) {
         boolean isExited = true;
         while (isExited) {
-            System.out.println("Current name is: %s".formatted(user.getFirstName()));
-            System.out.println("Please write a new name: \s");
+            System.out.printf("Current name is: %s\n".formatted(user.getFirstName()));
+            System.out.println("Please write a new name: ");
             String name = Main.scannerStr.nextLine();
             if (name.length() > 2 && name.length() < 21) {
                 user.setFirstName(name);
@@ -145,29 +160,28 @@ public class UserUI {
                 cards.add(card);
                 if (card != null) {
                     System.out.println(count + ". Card number: %s\nEnd date: %s\nBalance: %s"
-                            .formatted(card.getCardNumber(), card.getEndDate().toString(), card.getBalance()));
+                            .formatted(card.getCardNumber(), card.getEndDate(), card.getBalance()));
                     count++;
                 }
                 System.out.println("0. Exit");
             }
             System.out.println("Choose card");
             int index = Main.scannerInt.nextInt();
-            switch (index) {
-                case 0 -> isExited = false;
-                default -> {
-                    if (index > 0 && index < count) {
-                        System.out.println("Write amount of money for top up balance: ");
-                        double amount = Main.scannerInt.nextInt();
-                        if (amount > 0) {
-                            cards.get(count - 1).setBalance(amount);
-                            System.out.println("Successfully changed balance of card %s to: "
-                                    .formatted(cards.get(count - 1).getCardNumber()) + amount);
-                        } else {
-                            System.out.println("Please write of money bigger than zero!");
-                        }
+            if (index == 0) {
+                isExited = false;
+            } else {
+                if (index > 0 && index < count) {
+                    System.out.println("Write amount of money for top up balance: ");
+                    double amount = Main.scannerInt.nextInt();
+                    if (amount > 0) {
+                        cards.get(count - 1).setBalance(amount);
+                        System.out.println("Successfully changed balance of card %s to: "
+                                .formatted(cards.get(count - 1).getCardNumber()) + amount);
                     } else {
-                        System.out.println("Incorrect chose!");
+                        System.out.println("Please write of money bigger than zero!");
                     }
+                } else {
+                    System.out.println("Incorrect chose!");
                 }
             }
         }

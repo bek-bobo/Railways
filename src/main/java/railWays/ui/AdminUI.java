@@ -10,23 +10,23 @@ public class AdminUI {
 
     private static final UserService userService = UserService.getInstance();
 
-//    public void start(User user) {
-//        boolean isExited = true;
-//        while (isExited){
-//            System.out.print("""
-//                    1. A
-//                    2.
-//                    0. Exit
-//                    >>\s""");
-//            int command = Main.scannerInt.nextInt();
-//            switch (command){
-//                case 0 -> isExited = false;
-//                default -> System.out.println("You have entered wrong command !!! ");
-//            }
-//        }
-//    }
+    public void start(User user) {
+        boolean isExited = true;
+        while (isExited){
+            System.out.print("""
+                    1. Get users
+                    0. Exit
+                    >>\s""");
+            int command = Main.scannerInt.nextInt();
+            switch (command){
+                case 0 -> isExited = false;
+                case 1 -> getUsers();
+                default -> System.out.println("You have entered wrong command !!! ");
+            }
+        }
+    }
 
-    public static void start(){
+    private static void getUsers(){
         List<User> allUsers = userService.getAll();
 
         for (User user:allUsers){
