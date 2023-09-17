@@ -94,7 +94,7 @@ public class BaseUI {
         }else {
             switch (user.getUserType()){
                 case USER -> new UserUI().start(user);
-                case ADMIN -> new AdminUI().start(user);
+                case ADMIN -> new AdminUI().start();
                 case DRIVER -> new DriverUI().start(user);
             }
         }
