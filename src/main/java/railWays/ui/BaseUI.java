@@ -3,12 +3,18 @@ package railWays.ui;
 import railWays.Main;
 import railWays.user.entity.User;
 import railWays.user.entity.UserType;
+import railWays.user.repository.UserRepository;
 import railWays.user.service.UserService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class BaseUI {
-    private final UserService userService = UserService.getInstance();
+    private static final UserService userService = UserService.getInstance();
+    private static final UserRepository userRepository = UserRepository.getInstance();
+    private static final HashMap<UUID, User> users = userRepository.users;
 
     {
         User build = User.builder()
@@ -21,6 +27,8 @@ public class BaseUI {
                 .username("qod1r_c1k")
                 .password("1234")
                 .userType(UserType.ADMIN)
+                .cardsId(new ArrayList<>())
+                .ticketsId(new ArrayList<>())
                 .build();
         userService.add(build);
     }
