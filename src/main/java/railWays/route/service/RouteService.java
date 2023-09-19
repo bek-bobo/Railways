@@ -21,7 +21,7 @@ public class RouteService implements Service<Route, UUID> {
 
     @Override
     public List<Route> getAll() {
-        return null;
+        return routeRepository.getAll();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class RouteService implements Service<Route, UUID> {
 
     @Override
     public Route add(Route route) {
-        return null;
+        return routeRepository.add(route);
     }
 
     public static RouteService getInstance(){

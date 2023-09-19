@@ -9,21 +9,31 @@ import java.util.List;
 public class AdminUI {
 
     private static final UserService userService = UserService.getInstance();
+    private static final AdminRouteUI adminRouteUI = AdminRouteUI.getInstance();
+
 
     public void start(User user) {
         boolean isExited = true;
         while (isExited){
             System.out.print("""
-                    1. Get users
+                    1. Users
+                    2. Route 
+                    3. Ticket
+                    4. Schedule
                     0. Exit
                     >>\s""");
             int command = Main.scannerInt.nextInt();
             switch (command){
                 case 0 -> isExited = false;
                 case 1 -> getUsers();
+                case 2 -> route(user);
                 default -> System.out.println("You have entered wrong command !!! ");
             }
         }
+    }
+
+    private void route(User user) {
+        adminRouteUI.mainMenu();
     }
 
     private static void getUsers(){

@@ -17,11 +17,13 @@ public class Route extends BaseEntity<UUID> {
     private UUID originStation;
     private UUID destination;
     private List<UUID> stationIds;
+    private double allDistance;
 
-    public Route(UUID uuid, LocalDateTime modified, LocalDateTime created, UUID originStation, UUID destination, List<UUID> stationIds) {
+    public Route(UUID uuid, LocalDateTime modified, LocalDateTime created, UUID originStation, UUID destination, List<UUID> stationIds, double allDistance) {
         super(uuid, modified, created);
         this.originStation = originStation;
         this.destination = destination;
         this.stationIds = stationIds;
+        this.allDistance = allDistance;
     }
 }

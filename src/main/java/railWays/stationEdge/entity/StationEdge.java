@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import railWays.common.entity.BaseEntity;
+import railWays.station.entity.Station;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -14,11 +15,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class StationEdge extends BaseEntity<UUID> {
-    private UUID leftStation;
-    private UUID rightStation;
+    private Station leftStation;
+    private Station rightStation;
     private double distance;
 
-    public StationEdge(UUID uuid, LocalDateTime modified, LocalDateTime created, UUID leftStation, UUID rightStation, int distance) {
+    public StationEdge(UUID uuid, LocalDateTime modified, LocalDateTime created, Station leftStation, Station rightStation, int distance) {
         super(uuid, modified, created);
         this.leftStation = leftStation;
         this.rightStation = rightStation;
