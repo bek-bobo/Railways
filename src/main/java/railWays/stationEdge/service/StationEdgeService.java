@@ -16,17 +16,17 @@ public class StationEdgeService implements Service<StationEdge, UUID> {
     private final StationEdgeRepository stationEdgeRepository = StationEdgeRepository.getInstance();
     @Override
     public StationEdge findById(UUID uuid) {
-        return null;
+        return stationEdgeRepository.findById(uuid);
     }
 
     @Override
     public List<StationEdge> getAll() {
-        return null;
+        return stationEdgeRepository.getAll();
     }
 
     @Override
     public void delete(UUID uuid) {
-
+        stationEdgeRepository.delete(uuid);
     }
 
     @Override

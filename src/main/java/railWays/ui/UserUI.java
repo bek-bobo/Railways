@@ -4,6 +4,7 @@ import railWays.Main;
 import railWays.card.entity.Card;
 import railWays.card.service.CardService;
 import railWays.user.entity.User;
+import railWays.user.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,100 +12,107 @@ import java.util.UUID;
 
 public class UserUI {
     private static final CardService cardService = CardService.getInstance();
+    private static final UserService userService = UserService.getInstance();
 
-    public void start(User user) {
+
+    public void userUI(User user) {
         boolean isExited = true;
         while (isExited) {
             System.out.print("""
-                    1. Account
-                    2. Ticket
-                    3. Balance
-                    0. Exit
-                    >>>\s""");
+                                        
+                    {}----------------------------------{}
+                        1. Account
+                        2. Ticket
+                        3. Balance
+                        0. Exit
+                    >>> \s""");
             int command = Main.scannerInt.nextInt();
             switch (command) {
                 case 0 -> isExited = false;
                 case 1 -> myAccount(user);
-                case 2 -> ticket(user);
+                case 2 -> TicketUI.ticketUi(user);
+                case 3 -> completeBalance(user);
                 default -> System.out.println("You have entered wrong command !!! ");
             }
         }
     }
 
-    private void ticket(User user) {
-        boolean isExited = true;
-        while (isExited){
-            System.out.println("""
-                    1. Buy ticket
-                    2. My ticket
-                    0. Exit
-                    >>>\s""");
-            int index = Main.scannerInt.nextInt();
-            switch (index){
-                case 0 -> isExited = false;
-                case 1 -> buyTicket(user);
-                case 2 -> myTickets(user);
-                default -> System.out.println("You have chosen wrong command!");
-            }
-        }
-    }
-
-    private void buyTicket(User user) {
-
-    }
-
-    private void myAccount(User user) {
+    private static void myAccount(User user) {
         boolean isExited = true;
         while (isExited) {
-            System.out.printf("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n\n"
-                    .formatted(user.getFirstName(), user.getUserType().toString(), user.getLastName(),
-                            user.getUsername(), user.getPhoneNumber(), user.getAge()));
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println("""
-                    1. Complete balance
-                    2. Change personal information
-                    3. My cards
-                    4. My tickets
-                    0. Exit
-                    >>>\s""");
+            System.out.print("""
+                                        
+                    {}----------------------------------{}
+                        1. Complete balance
+                        2. My Cards
+                        3. My Ticket
+                        4. User setting
+                        
+                        0. Exit
+                    >>> \s""");
             int index = Main.scannerInt.nextInt();
             switch (index) {
                 case 0 -> isExited = false;
-                case 1 -> completeBalance(user);
-                case 2 -> changePersonalInfo(user);
-                case 4 -> myTickets(user);
+                case 1 -> UserUI.changePersonalInfo(user);
+                case 2 -> CardUI.MyCards(user);
+                case 3 -> TicketUI.myTickets(user);
+                case 4 -> UserUI.userSetting(user);
                 default -> System.out.println("Entered wrong command!");
             }
         }
     }
 
-    private void myTickets(User user) {
+    private static void userSetting(User user){
+        boolean isExited = true;
+        while (isExited) {
+            System.out.print("""
+                                        
+                    {}----------------------------------{}
+                        1. Show user info
+                        2. Change user info
+                        
+                        0. Exit
+                    >>> \s""");
+            int index = Main.scannerInt.nextInt();
+            switch (index) {
+                case 0 -> isExited = false;
+                case 1-> UserUI.showUserInfo(user);
+                case 2 -> UserUI.changePersonalInfo(user);
+                default -> System.out.println("Entered wrong command!");
+            }
+        }
+
+
 
     }
 
-    private void changePersonalInfo(User user) {
+    private static void changePersonalInfo(User user) {
         boolean isExited = true;
         while (isExited) {
             System.out.printf("Name: %s(%s) \nSurname: %s\nUsername: %s\nPhone number: %s\nAge: %d\n\n"
                     .formatted(user.getFirstName(), user.getUserType().toString(), user.getLastName(),
                             user.getUsername(), user.getPhoneNumber(), user.getAge()));
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println("""
-                    1. Change name
-                    2. Change surname
-                    3. Change phone number
-                    4. Change username
-                    5. Change password
-                    0. Exit
+            System.out.print("""
+                                        
+                    {}----------------------------------{}
+                        1. Change name
+                        2. Change surname
+                        3. Change phone number
+                        4. Change username
+                        5. Change password
+                        6. Change passportID
+                        
+                        0. Exit
                     >>>\s""");
             int index = Main.scannerInt.nextInt();
             switch (index) {
                 case 0 -> isExited = false;
-                case 1 -> changeName(user);
-                case 2 -> changeSurname(user);
-                case 3 -> changePhoneNumber(user);
-                case 4 -> changeUserName(user);
-                case 5 -> changePassword(user);
+                case 1 -> UserUI.changeName(user);
+                case 2 -> UserUI.changeSurname(user);
+                case 3 -> UserUI.changePhoneNumber(user);
+                case 4 -> UserUI.changeUserName(user);
+                case 5 -> UserUI.changePassword(user);
+                case 6 -> UserUI.changePassportId(user);
                 default -> {
                     System.out.println("Wrong command, please try again!");
                 }
@@ -113,34 +121,52 @@ public class UserUI {
         }
     }
 
-    private void changePassword(User user) {
-    }
-
-    private void changeUserName(User user) {
+    private static void changePassportId(User user) {
 
     }
 
-    private void changePhoneNumber(User user) {
+    private static void changePassword(User user) {
+    }
+
+    private static void changeUserName(User user) {
 
     }
 
-    private void changeSurname(User user) {
+    private static void changePhoneNumber(User user) {
 
     }
 
-    private void changeName(User user) {
+    private static void changeSurname(User user) {
+
+    }
+
+    private static void changeName(User user) {
         boolean isExited = true;
         while (isExited) {
-            System.out.printf("Current name is: %s\n".formatted(user.getFirstName()));
-            System.out.println("Please write a new name: ");
+            System.out.printf("""
+                                        
+                    {}----------------------------------{}
+                        Current name is: %s
+                        Please write a new name: \s
+                    """, user.getFirstName());
             String name = Main.scannerStr.nextLine();
+
+
             if (name.length() > 2 && name.length() < 21) {
                 user.setFirstName(name);
-                System.out.println("Name successfully changed to: " + name);
+                System.out.printf("""
+                                                
+                        {}----------------------------------{}
+                            Name successfully changed to: %s
+                        """, name);
                 isExited = false;
             } else {
-                System.out.println("Please write name min length-3 and max 20");
-                System.out.println("Write 0 to cansel! ");
+                System.out.println("""
+                                                
+                        {}----------------------------------{}
+                            Please write name min length-3 and max 20
+                            Write 0 to cansel!
+                            ---> \s""");
                 int cansel = Main.scannerInt.nextInt();
                 if (cansel == 0) {
                     isExited = false;
@@ -149,7 +175,7 @@ public class UserUI {
         }
     }
 
-    private void completeBalance(User user) {
+    private static void completeBalance(User user) {
         boolean isExited = true;
         List<Card> cards = new ArrayList<>();
         int count = 1;
@@ -176,7 +202,7 @@ public class UserUI {
                     if (amount > 0) {
                         cards.get(count - 1).setBalance(amount);
                         System.out.println("Successfully changed balance of card %s to: "
-                                .formatted(cards.get(count - 1).getCardNumber()) + amount);
+                                                   .formatted(cards.get(count - 1).getCardNumber()) + amount);
                     } else {
                         System.out.println("Please write of money bigger than zero!");
                     }
@@ -186,4 +212,53 @@ public class UserUI {
             }
         }
     }
+
+    private static void showUserInfo(User user) {
+        boolean isExited = true;
+        while (isExited) {
+            UserUI.getUser(user);
+            System.out.println("""
+                    Exit -> 0
+                    ----> \s""");
+            int index = Main.scannerInt.nextInt();
+            if (index == 0) {
+                isExited = false;
+            }
+        }
+    }
+
+    protected static void getUser(User user) {
+        System.out.printf(
+                """
+                        {}--------------------------{}
+                          
+                              First name : %s
+                              Surname : %s
+                              Age %s
+                              Phone number : %s
+                              Passport id : %s
+                              Username : %s
+                              Password : %s
+                              User type : %s
+                              Cards id : %s
+                              tickets id : %s
+                                     
+                        ------------------------------> \n""",
+                user.getFirstName(),
+                user.getLastName(),
+                user.getAge(),
+                user.getPhoneNumber(),
+                user.getPassportId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getUserType(),
+                CardUI.getUserCards(user),
+                user.getTicketsId().toString()
+        );
+    }
+
+
+
+
+
 }

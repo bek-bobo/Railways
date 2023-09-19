@@ -2,11 +2,13 @@ package railWays.user.repository;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import railWays.card.entity.Card;
 import railWays.common.repository.BaseRepository;
 import railWays.user.entity.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -26,6 +28,7 @@ public class UserRepository extends BaseRepository<UUID, User> {
         }
         return null;
     }
+
 
     public static UserRepository getInstance() {
         return userRepository;

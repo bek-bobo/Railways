@@ -15,17 +15,17 @@ public class ScheduleService implements Service<Schedule, UUID> {
     private final ScheduleRepository scheduleRepository = ScheduleRepository.getInstance();
     @Override
     public Schedule findById(UUID uuid) {
-        return null;
+        return scheduleRepository.findById(uuid);
     }
 
     @Override
     public List<Schedule> getAll() {
-        return null;
+        return scheduleRepository.getAll();
     }
 
     @Override
     public void delete(UUID uuid) {
-
+        scheduleRepository.delete(uuid);
     }
 
     @Override

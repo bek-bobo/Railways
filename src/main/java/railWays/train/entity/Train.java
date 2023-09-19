@@ -14,7 +14,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class Train extends BaseEntity<UUID> {
+public class    Train extends BaseEntity<UUID> {
     private UUID routeId;
     private String name;
     private TrainType type;

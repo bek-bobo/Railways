@@ -12,16 +12,21 @@ import java.util.UUID;
 @ToString(callSuper = true)
 public class Card extends BaseEntity<UUID> {
     private String cardNumber;
-    private int password;
-    private String endDate;
+    private String password;
+    private LocalDateTime endDate;
     private double balance;
+    private CardType cardType;
+
 
     @Builder
-    public Card(UUID uuid, LocalDateTime modified, LocalDateTime created, String cardNumber, int password, String endDate, double balance) {
+    public Card(UUID uuid, LocalDateTime modified, LocalDateTime created, String cardNumber,
+                String password, LocalDateTime endDate, double balance, CardType cardType) {
         super(uuid, modified, created);
         this.cardNumber = cardNumber;
         this.password = password;
         this.endDate = endDate;
         this.balance = balance;
+        this.cardType = cardType;
     }
+
 }

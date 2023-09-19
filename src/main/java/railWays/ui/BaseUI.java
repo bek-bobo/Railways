@@ -56,8 +56,6 @@ public class BaseUI {
         int age = Main.scannerInt.nextInt();
         System.out.print("Please enter your phoneNumber: ");
         String phoneNumber = Main.scannerStr.nextLine();
-        System.out.print("Please enter your passwordId: ");
-        String passwordId = Main.scannerStr.nextLine();
         System.out.print("Please enter your username: ");
         String username = Main.scannerStr.nextLine();
         System.out.print("Please enter your password: ");
@@ -67,11 +65,13 @@ public class BaseUI {
                 .lastName(lastName)
                 .age(age)
                 .phoneNumber(phoneNumber)
-                .passportId(passwordId)
                 .username(username)
                 .password(password)
                 .userType(UserType.USER)
+                .cardsId(new ArrayList<>())
+                .ticketsId(new ArrayList<>())
                 .build();
+
         userBuild = userService.add(userBuild);
         if (userBuild == null){
             System.out.println("This username has been already used !!! ");
@@ -89,9 +89,8 @@ public class BaseUI {
             System.out.println("Current user doesn't exist! Please try again!");
         }else {
             switch (user.getUserType()){
-                case USER -> new UserUI().start(user);
+                case USER -> new UserUI().userUI(user);
                 case ADMIN -> new AdminUI().start(user);
-                case DRIVER -> new DriverUI().start(user);
             }
         }
     }

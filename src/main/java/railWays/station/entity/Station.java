@@ -1,9 +1,6 @@
 package railWays.station.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import railWays.common.entity.BaseEntity;
 
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ public class Station extends BaseEntity<UUID> {
     private Location stationLocation;
     private String name;
 
+    @Builder
     public Station(UUID uuid, LocalDateTime modified, LocalDateTime created, Location stationLocation, String name) {
         super(uuid, modified, created);
         this.stationLocation = stationLocation;

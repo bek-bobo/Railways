@@ -1,9 +1,6 @@
 package railWays.stationEdge.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import railWays.common.entity.BaseEntity;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,8 @@ public class StationEdge extends BaseEntity<UUID> {
     private UUID rightStation;
     private double distance;
 
+
+    @Builder
     public StationEdge(UUID uuid, LocalDateTime modified, LocalDateTime created, UUID leftStation, UUID rightStation, int distance) {
         super(uuid, modified, created);
         this.leftStation = leftStation;

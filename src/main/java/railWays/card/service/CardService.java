@@ -26,17 +26,24 @@ public class CardService implements Service<Card, UUID> {
 
     @Override
     public List<Card> getAll() {
-        return null;
+        return cardRepository.getAll();
     }
 
     @Override
     public void delete(UUID uuid) {
-
+        cardRepository.delete(uuid);
     }
 
     @Override
     public Card add(Card card) {
-        return null;
+        List<Card> cards = getAll();
+        for (Card existingUser : cards) {
+            if (existingUser.getCardNumber().equals(card.getCardNumber())
+                && existingUser.getPassword().equals(card.getPassword())) {
+                return null;
+            }
+        }
+        return cardRepository.add(card);
     }
 
     public static CardService getInstance() {

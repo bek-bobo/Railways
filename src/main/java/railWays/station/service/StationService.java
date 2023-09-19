@@ -12,25 +12,31 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StationService implements Service<Station, UUID> {
     private static final StationService stationService = new StationService();
-    private final StationRepository stationRepository = StationRepository.getInstance();
+    private  final  StationRepository stationRepository = StationRepository.getInstance();
     @Override
-    public Station findById(UUID uuid) {
-        return null;
+    public  Station findById(UUID uuid) {
+        return stationRepository.findById(uuid);
     }
 
     @Override
     public List<Station> getAll() {
-        return null;
+        return stationRepository.getAll();
     }
 
     @Override
     public void delete(UUID uuid) {
-
+        stationRepository.delete(uuid);
     }
 
     @Override
     public Station add(Station station) {
-        return null;
+        List<Station> all = getAll();
+        for (Station existingStation:all){
+            if(existingStation.getName().equals(station.getName())){
+                return null;
+            }
+        }
+        return stationRepository.add(station);
     }
 
     public static StationService getInstance(){
